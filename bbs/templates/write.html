@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}New Post{% endblock %}
+
+{% block content %}
+<h2>New Post</h2>
+
+<form method="post" action="{{ url_for('board.write_save') }}">
+    <label>Author Name</label>
+    {#-
+        1. You can use `request` context local in the template.
+        2. Jinja2 tries to access dict key if no attribute is found.
+    #}
+    <input type="text" name="author_name" value="{{ request.cookies.author_name }}" required>
+
+    <label>Title</label>
+    <input type="text" name="title" class="input-xxlarge" required>
+
+    <label>Post Body</label>
+    <textarea name="body" class="input-xxlarge" rows="6" required></textarea>
+
+    <div class="form-actions">
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>
+{% endblock %}

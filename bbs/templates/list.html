@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}List{% endblock %}
+
+{% block content %}
+<table class="table table-bordered">
+    <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Date</th>
+    </tr>
+{% for post in paging.items %}
+    <tr>
+        <td>{{ post.author_name }}</td>
+        <td><a href="{{ url_for('board.show', id=post.id) }}">{{ post.title }}</a></td>
+        <td>{{ post.created_at }}</td>
+    </tr>
+{% else %}
+    <tr>
+        <td colspan="3">No posts yet.</td>
+    </tr>
+{% endfor %}
+</table>
+
+<div class="pagination pull-left">
+<ul>
+{%- for page in paging.iter_pages() %}
+    {% if page %}
+    {% if page != paging.page %}
+    <li><a href="{{ url_for('board.list', page=page) }}">{{ page }}</a></li>
+    {% else %}
+    <li class="active"><span>{{ page }}</span></li>
+    {% endif %}
+    {% else %}
+    <li><span>…</span></li>
+    {% endif %}
+{%- endfor %}
+</ul>
+</div>
+
+<p class="pull-right">
+    <a href="{{ url_for('board.write') }}" class="btn btn-primary"><i class="icon-pencil icon-white"></i> New Post</a>
+</p>
+{% endblock %}

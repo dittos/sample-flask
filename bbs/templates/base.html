@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{{ 'css/bootstrap.min.css'|static }}" rel="stylesheet" media="screen">
+    </head>
+    <body>
+        <div class="container">
+            <div class="navbar">
+                <div class="navbar-inner">
+                    <a href="{{ url_for('board.index') }}" class="brand">Board</a>
+                </div>
+            </div>
+
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>
