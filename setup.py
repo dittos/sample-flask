@@ -9,8 +9,8 @@ setup(
 
     install_requires=[
         'Flask>=0.10.1',
-        'Flask-Script>=0.5.3',
-        'Flask-SQLAlchemy>=0.16',
-        'SQLAlchemy>=0.8.2',
+        'Flask-Script>=0.6.6',
+        'Flask-SQLAlchemy>=1.0',
+        'SQLAlchemy>=0.8.4',
     ],
 )

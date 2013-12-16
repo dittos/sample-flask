@@ -16,4 +16,11 @@ sample-flask
     pip install -e .
     mkdir instance
     cp config.py.sample instance/config.py
+    python manage.py db create_all
     python manage.py runserver
+
+## 바뀐 점
+
+### 2013-12-16
+
+Flask-Script 업데이트로 필요 없어진 hack 제거.
