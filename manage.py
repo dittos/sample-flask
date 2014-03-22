@@ -1,15 +1,19 @@
 import os
 from flask.ext import script
-from bbs import app, db
+from bbs import create_app
+from bbs.models import db
 
-manager = script.Manager(app)
+manager = script.Manager(create_app)
 
 # Override the default `runserver` command, to monitor the change of
 # the configuration file.
 # XXX: `Config.root_path` is an undocumented attribute.
-config_path = os.path.join(app.config.root_path, 'config.py')
-runserver = script.Server(extra_files=[config_path])
-manager.add_command('runserver', runserver)
+class Server(script.Server):
+    def handle(self, app, *args, **kwargs):
+        config_path = os.path.join(app.config.root_path, 'config.py')
+        self.server_options['extra_files'] = [config_path]
+        super(Server, self).handle(app, *args, **kwargs)
+manager.add_command('runserver', Server())
 
 
 db_manager = script.Manager()

@@ -1,5 +1,7 @@
 import datetime
-from bbs import db
+from flask.ext.sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)

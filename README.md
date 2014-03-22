@@ -21,6 +21,10 @@ sample-flask
 
 ## 바뀐 점
 
+### 2014-03-22
+
+App Factory 사용.
+
 ### 2013-12-16
 
 Flask-Script 업데이트로 필요 없어진 hack 제거.

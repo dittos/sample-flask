@@ -1,18 +1,10 @@
 import flask
-from flask.ext.sqlalchemy import SQLAlchemy
-
-__all__ = ['app', 'db']
-
-app = flask.Flask(__name__, instance_relative_config=True)
-app.config.from_pyfile('config.py')
-
-db = SQLAlchemy(app)
-
-# Declare model classes here.
-# This is not necessary, but by importing the module here,
-# you can just only import `db` in anywhere.
-import bbs.models
-
-# Install views.
 from bbs import views
-views.init_app(app)
+from bbs.models import db
+
+def create_app():
+    app = flask.Flask(__name__, instance_relative_config=True)
+    app.config.from_pyfile('config.py')
+    db.init_app(app)
+    views.init_app(app)
+    return app

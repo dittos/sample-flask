@@ -1,6 +1,6 @@
 import datetime
 import flask
-from bbs import db, models
+from bbs import models
 
 def init_app(app):
     app.register_blueprint(board)
@@ -37,8 +37,8 @@ def write_save():
     post.title = form['title']
     post.body = form['body']
 
-    db.session.add(post)
-    db.session.commit()
+    models.db.session.add(post)
+    models.db.session.commit()
 
     # `post.id` has been populated after the flush.
     # (`commit` implies `flush`)
